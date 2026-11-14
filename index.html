@@ -1,0 +1,472 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trailcross Overland — India to the World, by Road</title>
+<meta name="description" content="Self-driven overland expeditions from India — India–UK 2027, UAE–India Season 4, and the India–Nepal–China loop. Permits, logistics, and a support crew handled; you drive.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="motion.css">
+<link rel="stylesheet" href="future.css">
+<style>
+  .section-head .moto{
+    margin-top:14px;
+    font-family:var(--display);
+    font-style:italic;
+    font-size:19px;
+    color:var(--rust-bright);
+  }
+  .news-subhead{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--signal);
+    margin:48px 0 18px;
+  }
+  .news-subhead:first-of-type{ margin-top:8px; }
+
+  .news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:20px;
+  }
+  .news-card{
+    background:var(--asphalt);
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .news-card--video .video-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:#000;
+  }
+  .news-card--video .video-frame iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+  }
+  .news-card-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:16px 20px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border-top:1px solid var(--line);
+  }
+  .news-card-meta .k{
+    color:var(--sand);
+    font-weight:600;
+  }
+  .news-card-meta .v{
+    color:var(--sand-dim);
+    text-align:right;
+  }
+
+  /* Newspaper clipping cards */
+  .news-card--clipping img{
+    width:100%;
+    display:block;
+  }
+
+  /* Article link preview cards */
+  .news-card--link{
+    color:inherit;
+    text-decoration:none;
+    display:block;
+    transition:background .2s ease;
+  }
+  .news-card--link:hover{ background:var(--asphalt-2); }
+  .news-card--link .link-thumb{
+    width:100%;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    display:block;
+    border-bottom:1px solid var(--line);
+  }
+  .news-card--link .link-body{
+    padding:18px 20px;
+  }
+  .news-card--link .link-source{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--rust-bright);
+    margin-bottom:8px;
+  }
+  .news-card--link .link-title{
+    font-family:var(--display);
+    font-size:18px;
+    line-height:1.25;
+    color:var(--sand);
+  }
+  .news-card--link-noimg .link-body{
+    min-height:140px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+</style>
+<script>
+  // Decide before first paint whether to play the logo intro (once per visit)
+  (function(){ var r=document.documentElement;
+    try{ if(sessionStorage.getItem('tcIntroSeen')){ r.classList.add('no-intro'); } else { r.classList.add('intro-lock'); } }
+    catch(e){ r.classList.add('intro-lock'); }
+  })();
+</script>
+<noscript><style>#intro{display:none !important}</style></noscript>
+</head>
+<body class="landing">
+
+<!-- ===== Logo intro: the logo traces itself, then its triangle opens as a window into the site ===== -->
+<div id="intro" role="dialog" aria-label="Welcome to Trailcross Overland">
+  <svg class="intro-logo-svg" viewBox="30.6 177.5 533.4 486.9" aria-hidden="true"><path class="dk" pathLength="1" style="--d:0.79s" d="M 345.417969 470.394531 C 342.773438 468.546875 340.332031 466.664062 337.730469 465.046875 C 323.546875 456.234375 309.1875 447.703125 295.191406 438.609375 C 290.414062 435.5 285.992188 431.46875 282.351562 427.078125 C 277.375 421.078125 278.015625 414.429688 283.730469 409.082031 C 287.183594 405.851562 291.179688 402.902344 295.425781 400.871094 C 304.707031 396.433594 314.398438 392.867188 323.738281 388.539062 C 329.132812 386.039062 334.425781 383.121094 339.273438 379.699219 C 342.738281 377.25 342.507812 373.628906 339.347656 370.714844 C 337.617188 369.117188 335.554688 367.585938 333.359375 366.847656 C 325.425781 364.171875 317.410156 361.699219 309.34375 359.449219 C 305.601562 358.402344 301.667969 358.035156 297.820312 357.355469 C 298.621094 358.285156 299.578125 358.503906 300.472656 358.871094 C 306.734375 361.453125 313.269531 363.542969 319.144531 366.820312 C 324.6875 369.914062 324.074219 374.992188 318.269531 377.703125 C 315.113281 379.171875 311.734375 380.214844 308.386719 381.195312 C 294.953125 385.132812 281.40625 388.703125 268.070312 392.933594 C 258.425781 395.992188 249.234375 400.246094 241.246094 406.691406 C 230.210938 415.59375 226.378906 428.433594 231.554688 441.640625 C 233.828125 447.445312 236.847656 453.136719 240.492188 458.183594 C 256.242188 479.996094 272.34375 501.550781 288.320312 523.195312 C 291.277344 527.199219 294.257812 531.179688 297.390625 535.386719 C 298.226562 534.296875 298.902344 533.449219 299.546875 532.582031 C 305.789062 524.136719 312.019531 515.683594 318.277344 507.25 C 319.640625 505.414062 321.367188 503.742188 319.839844 501.148438 C 319.714844 500.9375 320.226562 500.347656 320.472656 499.871094 C 321.328125 500.320312 322.050781 500.699219 322.761719 501.074219 C 330.328125 490.824219 337.746094 480.78125 345.417969 470.394531 M 150.660156 345.960938 L 202.644531 345.960938 C 201.261719 349.703125 198.964844 351.042969 195.082031 350.9375 C 184.886719 350.660156 174.675781 350.84375 164.46875 350.84375 L 160.625 350.84375 C 181.984375 379.632812 202.925781 407.855469 224.136719 436.441406 C 224.246094 435.78125 224.375 435.460938 224.335938 435.15625 C 222.40625 418.988281 230.082031 407.882812 243.234375 399.882812 C 253.230469 393.808594 264.210938 389.988281 275.453125 387 C 285.308594 384.378906 295.300781 382.265625 305.167969 379.683594 C 309.492188 378.550781 313.800781 377.117188 317.855469 375.25 C 321.453125 373.59375 321.585938 370.945312 318.375 368.574219 C 315.988281 366.8125 313.304688 365.363281 310.582031 364.164062 C 300.261719 359.617188 289.355469 357.09375 278.292969 355.15625 C 277.921875 355.089844 277.550781 355.019531 277.183594 354.953125 C 277.214844 354.652344 277.253906 354.351562 277.289062 354.050781 C 286.363281 355.070312 295.53125 355.574219 304.480469 357.246094 C 313.582031 358.949219 322.542969 361.554688 331.414062 364.273438 C 334.753906 365.292969 337.882812 367.445312 340.707031 369.605469 C 344.453125 372.464844 344.949219 377.078125 341.574219 380.363281 C 338.550781 383.308594 334.960938 385.941406 331.167969 387.78125 C 320.914062 392.75 310.359375 397.089844 300.054688 401.960938 C 296.015625 403.875 292.117188 406.257812 288.535156 408.9375 C 281.066406 414.53125 280.464844 421.300781 287.257812 427.644531 C 291.523438 431.632812 296.445312 435.082031 301.519531 438 C 315.816406 446.21875 330.351562 454.035156 344.78125 462.027344 C 346.339844 462.890625 347.835938 463.867188 349.5 464.878906 C 377.6875 426.96875 405.761719 389.203125 434.136719 351.039062 C 432.628906 350.945312 431.675781 350.839844 430.722656 350.839844 C 420.316406 350.828125 409.902344 350.585938 399.511719 350.960938 C 395.4375 351.109375 393.546875 349.359375 392.035156 345.886719 L 444.234375 345.886719 C 395.179688 412 346.371094 477.789062 297.421875 543.761719 C 248.511719 477.847656 199.734375 412.105469 150.660156 345.960938 "/><path class="dk" pathLength="1" style="--d:0.44s" d="M 353.828125 313.429688 C 350.886719 316.734375 348.132812 319.898438 345.28125 322.976562 C 344.230469 324.109375 344.171875 325.011719 344.917969 326.382812 C 351.597656 338.6875 358.195312 351.035156 364.808594 363.375 C 365.261719 364.21875 365.644531 365.101562 365.644531 366.199219 C 362.800781 361.828125 359.972656 357.449219 357.113281 353.089844 C 344.503906 333.851562 331.8125 314.667969 319.296875 295.371094 C 312.667969 285.152344 306.332031 274.746094 299.867188 264.417969 C 299.089844 263.171875 298.351562 261.898438 297.257812 260.078125 C 296.1875 262.578125 295.34375 264.472656 294.5625 266.386719 C 289.417969 278.972656 284.355469 291.589844 279.089844 304.121094 C 278.148438 306.363281 278.414062 307.925781 279.660156 309.875 C 286.886719 321.15625 293.992188 332.515625 301.132812 343.851562 C 301.335938 344.175781 301.472656 344.546875 301.117188 345.367188 C 289.78125 333.425781 278.441406 321.488281 266.8125 309.234375 C 253.039062 330.238281 239.371094 351.078125 225.703125 371.917969 C 225.550781 371.835938 225.398438 371.753906 225.246094 371.671875 C 233.667969 356.066406 242.089844 340.460938 250.707031 324.492188 C 247.609375 320.960938 244.332031 317.230469 240.921875 313.34375 C 224.648438 333.726562 208.527344 353.914062 192.410156 374.101562 C 206.933594 350.15625 223.328125 327.5625 240.503906 305.089844 C 244.917969 310.121094 249.175781 314.976562 253.605469 320.03125 C 268.160156 296.871094 282.59375 273.90625 297.40625 250.335938 C 312.191406 273.863281 326.589844 296.785156 341.179688 319.996094 C 345.488281 315.089844 349.738281 310.246094 354.261719 305.09375 C 371.058594 327.101562 387.300781 349.199219 401.414062 372.859375 C 385.640625 353.15625 369.863281 333.457031 353.828125 313.429688 "/><path class="dk" pathLength="1" style="--d:0.93s" d="M 322.320312 504.1875 L 311.710938 494.785156 L 313.855469 492.386719 L 324.566406 501.46875 Z M 322.320312 504.1875 "/><path class="dk" pathLength="1" style="--d:0.88s" d="M 301.386719 485.101562 L 291.339844 475.125 L 293.179688 473.289062 L 303.382812 482.984375 Z M 301.386719 485.101562 "/><path class="dk" pathLength="1" style="--d:0.83s" d="M 281.636719 464.808594 L 272.40625 454.058594 L 273.929688 452.796875 L 283.320312 463.253906 Z M 281.636719 464.808594 "/><path class="dk" pathLength="1" style="--d:0.77s" d="M 263.898438 442.703125 C 261.238281 438.78125 258.761719 434.71875 256.75 430.398438 L 257.976562 429.816406 C 260.035156 433.988281 262.558594 437.9375 265.269531 441.75 Z M 263.898438 442.703125 "/><path class="dk" pathLength="1" style="--d:0.70s" d="M 257.6875 416.238281 C 259.882812 411.925781 263.316406 408.453125 267.046875 405.554688 L 267.503906 406.136719 C 263.890625 409.066406 260.628906 412.542969 258.628906 416.703125 Z M 257.6875 416.238281 "/><path class="dk" pathLength="1" style="--d:0.66s" d="M 279.171875 398.257812 C 283.425781 396.214844 287.816406 394.488281 292.269531 392.964844 L 292.308594 393.074219 C 287.894531 394.699219 283.546875 396.519531 279.359375 398.640625 Z M 279.171875 398.257812 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 50.816406 577.183594 L 38.558594 577.183594 L 38.558594 573.394531 L 67.171875 573.394531 L 67.171875 577.183594 L 54.917969 577.183594 L 54.917969 609.746094 L 50.816406 609.746094 Z M 50.816406 577.183594 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 106.179688 591.933594 C 111.578125 591.933594 115.527344 589.128906 115.527344 584.453125 L 115.527344 584.351562 C 115.527344 579.832031 112.097656 577.183594 106.230469 577.183594 L 95.011719 577.183594 L 95.011719 591.933594 Z M 90.910156 573.394531 L 106.542969 573.394531 C 111.058594 573.394531 114.589844 574.742188 116.875 577.027344 C 118.695312 578.84375 119.679688 581.285156 119.679688 584.195312 L 119.679688 584.296875 C 119.679688 590.324219 115.527344 593.90625 109.8125 594.894531 L 120.980469 609.746094 L 115.941406 609.746094 L 105.398438 595.621094 L 95.011719 595.621094 L 95.011719 609.746094 L 90.910156 609.746094 Z M 90.910156 573.394531 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 202.363281 573.394531 L 206.464844 573.394531 L 206.464844 609.746094 L 202.363281 609.746094 Z M 202.363281 573.394531 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 233.371094 573.394531 L 237.472656 573.394531 L 237.472656 605.953125 L 257.933594 605.953125 L 257.933594 609.746094 L 233.371094 609.746094 Z M 233.371094 573.394531 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 311.792969 591.675781 L 311.792969 591.570312 C 311.792969 581.285156 319.527344 572.769531 330.175781 572.769531 C 336.769531 572.769531 340.769531 575.054688 344.351562 578.535156 L 341.546875 581.546875 C 338.433594 578.640625 335.109375 576.5625 330.125 576.5625 C 322.074219 576.5625 316.050781 583.105469 316.050781 591.464844 L 316.050781 591.570312 C 316.050781 599.980469 322.074219 606.578125 330.125 606.578125 C 335.109375 606.578125 338.378906 604.65625 341.859375 601.332031 L 344.5625 603.980469 C 340.820312 607.824219 336.5625 610.371094 330.019531 610.371094 C 319.527344 610.371094 311.792969 602.113281 311.792969 591.675781 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 383.460938 591.933594 C 388.863281 591.933594 392.808594 589.128906 392.808594 584.453125 L 392.808594 584.351562 C 392.808594 579.832031 389.382812 577.183594 383.515625 577.183594 L 372.296875 577.183594 L 372.296875 591.933594 Z M 368.195312 573.394531 L 383.824219 573.394531 C 388.34375 573.394531 391.875 574.742188 394.160156 577.027344 C 395.976562 578.84375 396.964844 581.285156 396.964844 584.195312 L 396.964844 584.296875 C 396.964844 590.324219 392.808594 593.90625 387.097656 594.894531 L 398.261719 609.746094 L 393.222656 609.746094 L 382.683594 595.621094 L 372.296875 595.621094 L 372.296875 609.746094 L 368.195312 609.746094 Z M 368.195312 573.394531 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 453.210938 591.675781 L 453.210938 591.570312 C 453.210938 583.3125 447.1875 576.5625 438.875 576.5625 C 430.566406 576.5625 424.648438 583.207031 424.648438 591.464844 L 424.648438 591.570312 C 424.648438 599.828125 430.671875 606.578125 438.980469 606.578125 C 447.289062 606.578125 453.210938 599.929688 453.210938 591.675781 M 420.390625 591.675781 L 420.390625 591.570312 C 420.390625 581.546875 427.917969 572.769531 438.980469 572.769531 C 450.042969 572.769531 457.46875 581.441406 457.46875 591.464844 L 457.46875 591.570312 C 457.46875 601.59375 449.941406 610.371094 438.875 610.371094 C 427.816406 610.371094 420.390625 601.695312 420.390625 591.675781 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 479.753906 604.449219 L 482.296875 601.4375 C 486.089844 604.917969 489.722656 606.578125 494.761719 606.578125 C 499.695312 606.578125 502.863281 603.980469 502.863281 600.398438 L 502.863281 600.292969 C 502.863281 596.917969 501.042969 595.050781 493.410156 593.386719 C 485.050781 591.570312 481.207031 588.867188 481.207031 582.898438 L 481.207031 582.792969 C 481.207031 577.132812 486.242188 572.875 493.152344 572.875 C 498.5 572.875 502.1875 574.378906 505.925781 577.339844 L 503.535156 580.507812 C 500.160156 577.753906 496.785156 576.5625 493.046875 576.5625 C 488.269531 576.5625 485.308594 579.105469 485.308594 582.429688 L 485.308594 582.535156 C 485.308594 585.960938 487.125 587.933594 495.175781 589.597656 C 503.277344 591.414062 507.015625 594.320312 507.015625 599.878906 L 507.015625 599.980469 C 507.015625 606.214844 501.824219 610.265625 494.605469 610.265625 C 488.789062 610.265625 484.113281 608.394531 479.753906 604.449219 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 528.730469 604.449219 L 531.273438 601.4375 C 535.0625 604.917969 538.699219 606.578125 543.738281 606.578125 C 548.671875 606.578125 551.839844 603.980469 551.839844 600.398438 L 551.839844 600.292969 C 551.839844 596.917969 550.019531 595.050781 542.386719 593.386719 C 534.027344 591.570312 530.183594 588.867188 530.183594 582.898438 L 530.183594 582.792969 C 530.183594 577.132812 535.21875 572.875 542.125 572.875 C 547.476562 572.875 551.164062 574.378906 554.902344 577.339844 L 552.511719 580.507812 C 549.136719 577.753906 545.761719 576.5625 542.023438 576.5625 C 537.246094 576.5625 534.285156 579.105469 534.285156 582.429688 L 534.285156 582.535156 C 534.285156 585.960938 536.101562 587.933594 544.152344 589.597656 C 552.253906 591.414062 555.992188 594.320312 555.992188 599.878906 L 555.992188 599.980469 C 555.992188 606.214844 550.800781 610.265625 543.582031 610.265625 C 537.765625 610.265625 533.089844 608.394531 528.730469 604.449219 "/><path class="dk" pathLength="1" style="--d:1.33s" d="M 180.980469 656.316406 C 185.832031 656.316406 189.132812 652.46875 189.132812 648.070312 L 189.132812 648.027344 C 189.132812 643.632812 185.875 639.828125 181.027344 639.828125 C 176.175781 639.828125 172.875 643.679688 172.875 648.070312 L 172.875 648.117188 C 172.875 652.511719 176.132812 656.316406 180.980469 656.316406 M 181.027344 654.652344 C 177.382812 654.652344 174.742188 651.691406 174.742188 648.070312 L 174.742188 648.027344 C 174.742188 644.40625 177.339844 641.492188 180.980469 641.492188 C 184.625 641.492188 187.265625 644.453125 187.265625 648.070312 L 187.265625 648.117188 C 187.265625 651.738281 184.667969 654.652344 181.027344 654.652344 M 214.566406 656.15625 L 216.160156 656.15625 L 223.015625 640.101562 L 221.078125 640.101562 L 215.386719 653.835938 L 209.714844 640.101562 L 207.710938 640.101562 Z M 243.234375 656.042969 L 254.871094 656.042969 L 254.871094 654.402344 L 245.03125 654.402344 L 245.03125 648.824219 L 253.730469 648.824219 L 253.730469 647.183594 L 245.03125 647.183594 L 245.03125 641.742188 L 254.753906 641.742188 L 254.753906 640.101562 L 243.234375 640.101562 Z M 275.566406 656.042969 L 277.367188 656.042969 L 277.367188 649.847656 L 281.917969 649.847656 L 286.542969 656.042969 L 288.75 656.042969 L 283.855469 649.53125 C 286.359375 649.097656 288.179688 647.527344 288.179688 644.886719 L 288.179688 644.839844 C 288.179688 643.5625 287.75 642.492188 286.953125 641.695312 C 285.949219 640.695312 284.402344 640.101562 282.421875 640.101562 L 275.566406 640.101562 Z M 277.367188 648.230469 L 277.367188 641.765625 L 282.285156 641.765625 C 284.855469 641.765625 286.359375 642.925781 286.359375 644.90625 L 286.359375 644.953125 C 286.359375 647.003906 284.628906 648.230469 282.261719 648.230469 Z M 309.105469 656.042969 L 319.875 656.042969 L 319.875 654.378906 L 310.90625 654.378906 L 310.90625 640.101562 L 309.105469 640.101562 Z M 338.820312 656.042969 L 340.664062 656.042969 L 342.554688 651.828125 L 351.230469 651.828125 L 353.097656 656.042969 L 355.03125 656.042969 L 347.769531 639.988281 L 346.085938 639.988281 Z M 343.261719 650.214844 L 346.902344 642.082031 L 350.523438 650.214844 Z M 375.253906 656.042969 L 377.007812 656.042969 L 377.007812 642.972656 L 387.296875 656.042969 L 388.734375 656.042969 L 388.734375 640.101562 L 386.980469 640.101562 L 386.980469 652.878906 L 376.9375 640.101562 L 375.253906 640.101562 Z M 410.316406 656.042969 L 415.851562 656.042969 C 420.859375 656.042969 424.320312 652.558594 424.320312 648.070312 L 424.320312 648.027344 C 424.320312 643.542969 420.859375 640.101562 415.851562 640.101562 L 410.316406 640.101562 Z M 415.851562 641.765625 C 419.882812 641.765625 422.453125 644.542969 422.453125 648.070312 L 422.453125 648.117188 C 422.453125 651.671875 419.882812 654.378906 415.851562 654.378906 L 412.117188 654.378906 L 412.117188 641.765625 Z M 415.851562 641.765625 "/><path class="au" pathLength="1" style="--d:1.33s" d="M 449.105469 648.1875 L 529.523438 648.1875 L 529.523438 646.992188 L 449.105469 646.992188 "/><path class="au" pathLength="1" style="--d:1.33s" d="M 64.019531 648.1875 L 144.441406 648.1875 L 144.441406 646.992188 L 64.019531 646.992188 "/><path class="au" pathLength="1" style="--d:1.18s" d="M 428.394531 595.550781 L 446.714844 580.679688 L 439.28125 602.71875 L 437.554688 594.488281 Z M 428.394531 595.550781 "/><path class="dk" pathLength="1" style="--d:1.18s" d="M 143.851562 609.746094 L 162.261719 572.769531 L 179.828125 609.746094 L 175.316406 609.746094 L 162.152344 580.945312 L 148.632812 609.746094 Z M 143.851562 609.746094 "/><g class="ar"><path class="dk" pathLength="1" style="--d:1.50s" d="M 296.90625 185.464844 L 296.917969 225.6875 L 275.289062 236.199219 Z M 296.90625 185.464844 "/><path class="dk" pathLength="1" style="--d:1.50s" d="M 296.917969 185.464844 L 296.90625 225.6875 L 318.535156 236.199219 Z M 296.917969 185.464844 "/><path class="au" pathLength="1" style="--d:1.50s" d="M 296.917969 191.914062 L 312.917969 229.5 L 296.917969 221.175781 Z M 296.917969 191.914062 "/></g></svg>
+  <p class="intro-cap" aria-label="Where trails cross borders."><span class="w" style="--i:0">WHERE</span> <span class="w t" style="--i:1">TRAILS</span> <span class="w" style="--i:2">CROSS</span> <span class="w b" style="--i:3">BORDERS.</span></p>
+  <div class="intro-geo" aria-hidden="true"><span class="geo-lat">19.0760°N</span><span class="geo-lon">72.8777°E</span></div>
+  <div class="intro-track" aria-hidden="true"><i></i></div>
+  <p class="intro-hint">Click to enter</p>
+  <button class="intro-skip" type="button">Skip</button>
+</div>
+
+<header class="site-header">
+  <nav class="wrap nav">
+    <a href="index.html" class="brand" aria-label="Trailcross Overland — home"><img src="images/trailcross-logo.png" alt="" class="brand-logo"><span class="brand-name"><span class="trail">TRAIL</span>CROSS <span class="sub">OVERLAND</span></span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="tours.html">Expeditions</a></li>
+      <li><a href="index.html#news-articles">News Articles</a></li>
+      <li><a href="gallery.html">Past Seasons</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn solid nav-cta">Book A Trip</a>
+    <a href="https://wa.me/918943290164?text=Hi%20Trailcross%20Overland%2C%20I%27d%20like%20to%20know%20more%20about%20your%20expeditions." class="nav-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" title="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 8.3c-.5 1.3.1 3 1.6 4.6 1.5 1.6 3.2 2.3 4.5 1.8l1-1.1-2-1.5-.9.7c-.8-.3-1.8-1.3-2.1-2.1l.7-.9L10.3 8z" fill="currentColor"/></svg></a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">Menu</button>
+  </nav>
+</header>
+
+<section class="photo-hero">
+  <img src="images/bigalmatylake1.jpg" alt="Big Almaty Lake in the mountains" class="photo-hero-img">
+  <div class="route-thread" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="tg-block">
+    <h2 class="tg-line reveal"><span class="tw">WHERE</span> <span class="tw tg-trail">TRAILS</span> <span class="tw tg-cross">CROSS</span> <span class="tw tg-border">BORDERS.</span></h2>
+    <div class="tg-route" aria-hidden="true"><span class="tg-dot"></span></div>
+    <div class="tg-def reveal-stagger">
+      <p><b>Trail</b> the road we follow, wherever it leads.</p>
+      <p><b>Cross</b> every border and continent on the way.</p>
+    </div>
+    </div>
+    <div class="hero-eyebrow reveal">After 3 Successful Seasons of the UAE–India Overland Journey</div>
+    <h1 class="reveal">INDIA TO THE <span class="accent-fill">WORLD</span>,<br>BY ROAD.</h1>
+    <p class="lede reveal">Three charted expeditions for 2027 — a 65-day run from India to London, a fourth UAE–India season through Central Asia, and a one-month India–Nepal–China loop. We handle the permits and the convoy; you handle the driving.</p>
+    <div class="hero-actions reveal">
+      <a href="tours.html" class="btn solid">View All Expeditions</a>
+      <a href="contact.html" class="btn ghost">Plan Your Route</a>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="story" id="story" data-stage="1" aria-label="One life. Choose the road less travelled.">
+  <div class="story-pin">
+    <img class="story-photo" src="images/overland-vehicle.jpg" alt="" aria-hidden="true">
+    <div class="story-shade"></div>
+    <canvas class="story-canvas" aria-hidden="true"></canvas>
+    <div class="story-text">
+      <div class="st-a"><h2><span class="l1">One life.</span><span class="l2">Billions of people.</span></h2></div>
+      <div class="st-b"><p>How many will choose <span>the road less travelled?</span></p></div>
+      <div class="st-c">
+        <p class="c-sub">Don&rsquo;t just see the world. <b>Experience it.</b></p>
+        <img class="c-logo" src="images/trailcross-logo.svg" alt="Trail Cross Overland">
+        <p class="c-price">International Expedition Packages Starting from <b>₹19,75,000/-</b> per person</p>
+        <p class="c-close">Beyond Roads. <span>Beyond Borders.</span></p>
+        <div class="c-actions"><a class="btn solid" href="tours.html">Explore Expeditions</a><a class="btn ghost" href="contact.html">Plan Your Route</a></div>
+      </div>
+    </div>
+    <div class="story-hud" aria-hidden="true"><span class="story-step">01 / 04</span><div class="story-prog"><i></i></div><span class="story-cue">Scroll</span></div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="hl">INDIA</span><span>NEPAL</span><span>CHINA</span><span>TAJIKISTAN</span><span>KYRGYZSTAN</span><span>KAZAKHSTAN</span><span>UZBEKISTAN</span><span>TURKMENISTAN</span><span>IRAN</span><span class="hl">UAE</span><span>GEORGIA</span><span>TURKEY</span><span class="hl">EUROPE</span><span>LONDON</span>
+    <span class="hl">INDIA</span><span>NEPAL</span><span>CHINA</span><span>TAJIKISTAN</span><span>KYRGYZSTAN</span><span>KAZAKHSTAN</span><span>UZBEKISTAN</span><span>TURKMENISTAN</span><span>IRAN</span><span class="hl">UAE</span><span>GEORGIA</span><span>TURKEY</span><span class="hl">EUROPE</span><span>LONDON</span>
+  </div>
+</div>
+
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal">
+      <div class="num count" data-count="3" data-suffix="">0</div>
+      <div class="label">2027 Expeditions</div>
+    </div>
+    <div class="stat reveal">
+      <div class="num count" data-count="20" data-suffix="+">0</div>
+      <div class="label">Countries, Flagship Route</div>
+    </div>
+    <div class="stat reveal">
+      <div class="num count" data-count="18000" data-suffix="+ KM">0</div>
+      <div class="label">India–UK Distance</div>
+    </div>
+    <div class="stat reveal">
+      <div class="num count" data-count="65" data-suffix="">0</div>
+      <div class="label">Days, India to London</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="expeditions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">2027 Season — Three Routes</div>
+      <h2>Pick your border crossing.</h2>
+      <p>Every expedition below has been route-tested by our own crew, most of it in the photos below. Self-drive, or ride with our lead vehicle.</p>
+    </div>
+
+    <div class="dossier-grid reveal-stagger">
+      <a href="tours.html#india-uk" class="dossier dossier-link">
+        <div class="stamp">EXPEDITION BOOKING<br>OPEN</div>
+        <div class="dossier-route">Kerala → London · 20 Countries</div>
+        <h3>India–UK Overland 2027</h3>
+        <p>The big one. Himalayas, the Tibetan plateau, the Pamir Highway, the Silk Road, and a straight run through the Caucasus and Europe into London.</p>
+        <div class="dossier-meta">
+          <div><span class="k">Distance</span><span class="v">18,000+ km</span></div>
+          <div><span class="k">Duration</span><span class="v">65 days</span></div>
+          <div><span class="k">Dates</span><span class="v">30 May 2027</span></div>
+        </div>
+        <span class="btn ghost">View Route Dossier</span>
+      </a>
+
+      <a href="tours.html#uae-india-s4" class="dossier dossier-link">
+        <div class="stamp">SEASON<br>FOUR BOOKING OPEN`</div>
+        <div class="dossier-route">UAE → India · Central Asia</div>
+        <h3>UAE–India Overland — Season 4</h3>
+        <p>Another chapter in our longest-running route. Persian plateaus, the Karakum desert, the Pamirs, and the Tibetan approach into Nepal and home.</p>
+        <div class="dossier-meta">
+          <div><span class="k">Distance</span><span class="v">~15,000 km</span></div>
+          <div><span class="k">Duration</span><span class="v">55–60 days</span></div>
+          <div><span class="k">Dates</span><span class="v">April 2027</span></div>
+        </div>
+        <span class="btn ghost">View Route Dossier</span>
+      </a>
+
+      <a href="tours.html#china-loop" class="dossier dossier-link">
+        <div class="stamp">Season 1<br>Booking Open</div>
+        <div class="dossier-route">India → Nepal → China → India</div>
+        <h3>China Grand Loop Expedition</h3>
+        <p>A tighter, faster expedition — Tibet, the Chinese heartland, and the Great Wall, with a legendary stair-climb along the way. Back home in a month.</p>
+        <div class="dossier-meta">
+          <div><span class="k">Distance</span><span class="v">~7,000 km</span></div>
+          <div><span class="k">Duration</span><span class="v">30 days</span></div>
+          <div><span class="k">Dates</span><span class="v">2027</span></div>
+        </div>
+        <span class="btn ghost">View Route Dossier</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section tight">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why Drive With Us</div>
+      <h2>The paperwork is the hard part. We've done it before.</h2>
+    </div>
+    <div class="dossier-grid reveal-stagger" style="border:none; background:transparent; gap:12px">
+      <div class="dossier" style="border:1px solid var(--line);gap:12px">
+        <div class="dossier-route">Carnet &amp; Customs</div>
+        <h3>Permits Handled</h3>
+        <p>Carnet de Passage, visas, and country-entry permits arranged before you leave — the part that stops most self-drive plans dead.</p>
+      </div>
+      <div class="dossier" style="border:1px solid var(--line);">
+        <div class="dossier-route">Lead Vehicle</div>
+        <h3>Convoy Support</h3>
+        <p>Out front, the whole way: two adventure enthusiasts who caught the overlanding bug years ago and never looked back. They lead the convoy because they've earned every mile of it.</p>
+      </div>
+      <div class="dossier" style="border:1px solid var(--line);">
+        <div class="dossier-route">Pamir Highway & Beyond</div>
+        <h3>World's Second  Highest Motorable International Highway It</h3>
+        <p>The Pamir Highway is widely regarded as the world's second-highest international highway, climbing well past 4,000 metres. It's just one stretch of a route that also crosses open desert, mountain switchbacks, and long empty highway — every leg planned around what the terrain actually demands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tight" style="border-bottom:none;">
+  <div class="wrap reveal" style="text-align:center;">
+    <div class="eyebrow" style="justify-content:center; display:flex;">Ready When You Are</div>
+    <h2 style="font-family:var(--display); font-size:clamp(30px,5vw,50px); max-width:20ch; margin:0 auto;">The 2027 season is being planned right now.</h2>
+    <div class="hero-actions" style="justify-content:center; margin-top:32px;">
+      <a href="contact.html" class="btn solid">Talk to the Crew</a>
+      <a href="tours.html" class="btn ghost">Browse All Routes</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="news-articles">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">In The Media — UAE–India Overland, Season 1</div>
+      <h2>The road made the news.</h2>
+      <p>Coverage of the Season 1 crossing from Dubai to Kerala — news broadcasts, print clippings, and articles from the road.</p>
+      <p class="moto">"Let the adventure be your addiction."</p>
+    </div>
+
+    <div class="news-subhead reveal">On Air</div>
+    <div class="news-grid reveal-stagger">
+      <div class="news-card news-card--video" data-video-embed data-src="https://www.youtube-nocookie.com/embed/ExZUYKfY1Ps?autoplay=1&mute=1&playsinline=1&rel=0">
+        <div class="video-frame"></div>
+        <div class="news-card-meta">
+          <span class="k">Mathrubhoomi News</span>
+          <span class="v">Palakkad, Kerala</span>
+        </div>
+      </div>
+
+      <div class="news-card news-card--video" data-video-embed data-src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1dCjUFdSab%2F%3Fmibextid%3DwwXIfr&show_text=false&autoplay=true&mute=true">
+        <div class="video-frame"></div>
+        <div class="news-card-meta">
+          <span class="k">Amrita TV</span>
+          <span class="v">Pre-trip interview &amp; travel footage</span>
+        </div>
+      </div>
+
+      <div class="news-card news-card--video" data-video-embed data-src="https://www.youtube-nocookie.com/embed/UIvpt7wiOMI?autoplay=1&mute=1&playsinline=1&rel=0">
+        <div class="video-frame"></div>
+        <div class="news-card-meta">
+          <span class="k">Janam TV</span>
+          <span class="v">Trailcross's Anti-Drug Drive</span>
+        </div>
+      </div>
+
+      <div class="news-card news-card--video" data-video-embed data-src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1EkRkeGNYp%2F%3Fmibextid%3DwwXIfr&show_text=false&autoplay=true&mute=true">
+        <div class="video-frame"></div>
+        <div class="news-card-meta">
+          <span class="k">Reporter TV</span>
+          <span class="v">Season 1 feature</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-subhead reveal">In Print</div>
+    <div class="news-grid news-grid--clippings reveal-stagger">
+      <div class="news-card news-card--clipping">
+        <img src="images/news-clipping-mathrubhoomi-print.jpg" alt="Mathrubhoomi print clipping, 23 September 2024">
+        <div class="news-card-meta">
+          <span class="k">Mathrubhoomi</span>
+          <span class="v">23 Sep 2024, Palakkad</span>
+        </div>
+      </div>
+      <div class="news-card news-card--clipping">
+        <img src="images/news-clipping-manorama-print.jpg" alt="Malayala Manorama print clipping, 21 September 2024">
+        <div class="news-card-meta">
+          <span class="k">Malayala Manorama</span>
+          <span class="v">21 Sep 2024, Palakkad</span>
+        </div>
+      </div>
+      <div class="news-card news-card--clipping">
+        <img src="images/news-clipping-road-wonder.jpg" alt="Local Palakkad newspaper clipping, UAE to India road wonder">
+        <div class="news-card-meta">
+          <span class="k">Local Daily</span>
+          <span class="v">Palakkad Edition</span>
+        </div>
+      </div>
+      <div class="news-card news-card--clipping">
+        <img src="images/news-clipping-collector-welcome.jpg" alt="Newspaper clipping of the District Collector welcoming the crew home to Palakkad">
+        <div class="news-card-meta">
+          <span class="k">District Edition</span>
+          <span class="v">Palakkad, Kerala</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-subhead reveal">Online</div>
+    <div class="news-grid news-grid--links reveal-stagger">
+      <a class="news-card news-card--link" href="https://www.khaleejtimes.com/uae/around-the-world-in-40-days-2-uae-residents-undertake-13000km-journey-to-india-through-central-asi" target="_blank" rel="noopener">
+        <img class="link-thumb" src="https://imgengine.khaleejtimes.com/khaleejtimes/import/images/Nk9xNzX3Qg_OT8Pm_QJef0IaseY.jpg?width=1200&height=630&q=60&format=auto&ogImage=true&mode=fill&fill=blur" alt="Khaleej Times article thumbnail">
+        <div class="link-body">
+          <div class="link-source">Khaleej Times</div>
+          <div class="link-title">Two UAE residents undertake 13,000km journey to India through Central Asia</div>
+        </div>
+      </a>
+      <a class="news-card news-card--link" href="https://www.manoramaonline.com/district-news/palakkad/2024/10/04/dubai-to-india-off-road-adventure.html" target="_blank" rel="noopener">
+        <img class="link-thumb" src="images/news-clipping-manorama-print.jpg" alt="Malayala Manorama article preview">
+        <div class="link-body">
+          <div class="link-source">Malayala Manorama</div>
+          <div class="link-title">8 Countries, 14,000 km Off-Road — Finally in Palakkad</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">TRAILCROSS OVERLAND</div>
+    <div class="footer-meta">
+      <span>+91 89432 90164</span>
+      <span>Email — trailcrossoverland@gmail.com</span>
+      <span>&copy; 2026 TRAILCROSS OVERLAND</span>
+    </div>
+  </div>
+<div class="wrap footer-social"><span class="fs-label">Follow the journey</span><div class="fs-icons"><a href="https://www.facebook.com/" class="fs-link" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg></a><a href="https://www.instagram.com/" class="fs-link" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg></a><a href="https://www.youtube.com/" class="fs-link" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l5.5 3L10 15z" fill="currentColor"/></svg></a></div></div>
+</footer>
+
+<script src="script.js"></script>
+<script src="future.js"></script>
+<script src="story.js"></script>
+<script>
+  // Lazy-load each video (YouTube or Facebook) with autoplay, muted, the moment
+  // it scrolls into view. Facebook's embed doesn't expose the same play/pause
+  // control YouTube does, so loading the iframe (with autoplay baked into the
+  // URL) right as the card enters the viewport is the reliable cross-platform way
+  // to get "starts playing when you scroll to it" behaviour.
+  (function () {
+    var videoCards = document.querySelectorAll('[data-video-embed]');
+    if (!videoCards.length) return;
+
+    function loadCard(card) {
+      if (card.dataset.loaded) return;
+      var frame = card.querySelector('.video-frame');
+      var src = card.getAttribute('data-src');
+      if (!frame || !src) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.frameBorder = '0';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      frame.appendChild(iframe);
+      card.dataset.loaded = 'true';
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      videoCards.forEach(loadCard);
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          loadCard(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    videoCards.forEach(function (card) {
+      observer.observe(card);
+    });
+  })();
+</script>
+</body>
+</html>
