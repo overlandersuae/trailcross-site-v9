@@ -9,15 +9,17 @@
 <link rel="stylesheet" href="motion.css">
 <link rel="stylesheet" href="future.css">
  <script>
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  function toTop(){ window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }
+  toTop();
+  document.addEventListener('DOMContentLoaded', toTop);
   window.addEventListener('load', function () {
-    window.scrollTo(0, 0);
+    toTop();
+    setTimeout(toTop, 100);
+    setTimeout(toTop, 400);
   });
-  window.addEventListener('pageshow', function (e) {
-    if (e.persisted) window.scrollTo(0, 0);
-  });
+  window.addEventListener('pageshow', function (e) { if (e.persisted) toTop(); });
 </script>
 <style>
   .section-head .moto{
