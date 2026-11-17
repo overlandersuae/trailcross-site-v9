@@ -318,9 +318,4 @@ html.hud-on, html.hud-on a, html.hud-on button, html.hud-on .btn{ cursor:none; }
 .c-close{ margin-top:14px; font-size:clamp(15px,1.7vw,22px); letter-spacing:.1em; }
 .c-actions{ margin-top:18px; }
 @media (max-height:700px){ .c-sub{ font-size:20px; } .c-logo{ width:130px; margin-top:10px; } .c-price{ margin-top:8px; line-height:1.7; } .c-price b{ font-size:32px; } .c-close{ margin-top:10px; } }
-@media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden;
-    background-color: #1b3a33;
-  }
-}
+
